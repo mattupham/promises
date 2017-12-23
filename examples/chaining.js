@@ -16,6 +16,8 @@ var addNewUserToDatabaseAsync = function(user) {
       }
     })
     .then(function(newUser) {
+      console.log('new user', newUser);
+      // console.log('hashPassAsynch', db.hashPasswordAsync);
       return db.hashPasswordAsync(newUser); // Return a promise
     })
     .then(function(securedUser) {

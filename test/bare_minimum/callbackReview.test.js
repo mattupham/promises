@@ -42,13 +42,13 @@ describe('Callback review', function() {
     // requests and allows us to send back any response we want instead.
     // Since no actual requests is ever sent, our tests run faster
     // and we preserve our API rate limits.
-    var google = nock('https://google.com');
+    var google = nock('https://www.google.com');
     var someNonExistantWebsite = nock('https::///thisIsNoUrl.comedy');
 
     it('should accept a callback as its last argument', function(done) {
       google.get('/').reply(200);
 
-      getStatusCode('https://google.com', function() {
+      getStatusCode('https://www.google.com', function() {
         // If this asserion gets called, the callback was invoked correctly
         // Otherwise, this test will timeout after 2000ms
         expect(true).to.equal(true);
@@ -69,7 +69,7 @@ describe('Callback review', function() {
     it('should invoke the callback with the status code as the second argument', function(done) {
       google.get('/').reply(200);
 
-      getStatusCode('https://google.com', function(err, statusCode) {
+      getStatusCode('https://www.google.com', function(err, statusCode) {
         expect(statusCode).to.equal(200);
         expect(err).to.not.exist;
         done();
